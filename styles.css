@@ -607,11 +607,41 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
+/* Circular teal disc behind the hero image (reference look) */
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  max-width: 90%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--teal-soft), var(--teal) 60%, var(--teal-dark));
+  box-shadow: 0 30px 70px rgba(31, 110, 98, 0.30);
+  z-index: 0;
+}
+
+/* Small orange accent dot orbiting the disc */
+.hero-visual::after {
+  content: '';
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--orange);
+  top: 6%;
+  right: 14%;
+  box-shadow: 0 10px 24px rgba(244, 168, 61, 0.4);
+  z-index: 2;
+}
+
 .hero-image {
+  position: relative;
   width: 100%;
-  max-width: 560px;
+  max-width: 460px;
+  z-index: 1;
   animation: floatSlow 6s ease-in-out infinite;
-  filter: drop-shadow(0 20px 40px rgba(31, 110, 98, 0.15));
+  filter: drop-shadow(0 20px 40px rgba(16, 63, 57, 0.28));
 }
 
 /* Floating decorative cards */
