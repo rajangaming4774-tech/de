@@ -375,6 +375,18 @@ h1, h2, h3, h4, h5, h6 {
   background-clip: text;
 }
 
+/* Black header branding (logo mark + wordmark) — scoped to header
+   so the footer logo stays visible on its dark background */
+.header .logo-icon {
+  background: var(--ink);
+}
+
+.header .logo span {
+  background: none;
+  -webkit-text-fill-color: var(--ink);
+  color: var(--ink);
+}
+
 .nav {
   display: flex;
   align-items: center;
@@ -395,11 +407,11 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--orange);
 }
 
-/* Solid orange pill on the active link (reference "Winter" chip) */
+/* Solid black pill on the active link */
 .nav a.active {
   color: var(--text-white);
-  background: var(--orange);
-  box-shadow: 0 6px 16px rgba(255, 107, 44, 0.35);
+  background: var(--ink);
+  box-shadow: 0 6px 16px rgba(22, 23, 28, 0.3);
 }
 
 /* Dropdown */
