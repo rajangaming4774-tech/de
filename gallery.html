@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | HapiWelkin Creative Institute</title>
+  <meta name="description" content="View moments of joy, creativity, and learning from HapiWelkin's programs across schools in Tamil Nadu.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo"><div class="logo-icon">HW</div><span>HapiWelkin</span></a>
+      <nav class="nav" id="mainNav">
+        <a href="index.html">Home</a>
+        <div class="nav-dropdown"><a href="about.html">About <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></a><div class="dropdown-menu"><a href="about.html">About Institution</a><a href="about.html#management">Management</a></div></div>
+        <div class="nav-dropdown"><a href="school-programs.html">School Programs <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></a><div class="dropdown-menu"><a href="school-programs.html#hapi">Hapi</a><a href="school-programs.html#crea">Crea</a><a href="school-programs.html#wami">Wami</a><a href="school-programs.html#deep">DEEP</a></div></div>
+        <a href="college-programs.html">College Programs</a>
+        <div class="nav-dropdown"><a href="services.html">Services <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></a><div class="dropdown-menu"><a href="services.html#hapi-club">Hapi Club</a><a href="hapicrea-universe.html">HapiCrea Universe</a><a href="services.html#branding">Branding</a></div></div>
+        <a href="for-schools.html">For Schools</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-cta">
+        <a href="#" class="btn btn-primary" data-modal="enquiry">Enquire Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="blob blob-pink" style="width:300px;height:300px;top:-80px;right:-80px;"></div>
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <span>Gallery</span>
+      </div>
+      <h1>Moments of <span class="highlight">Joy</span></h1>
+      <p>Glimpses of happy creators, imaginative artwork, and transformative learning experiences from our programs.</p>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-page">
+    <div class="container">
+      
+      <!-- Filters -->
+      <div class="gallery-filters reveal">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="hapi">Hapi Program</button>
+        <button class="filter-btn" data-filter="crea">Crea Program</button>
+        <button class="filter-btn" data-filter="hcu">HapiCrea Universe</button>
+        <button class="filter-btn" data-filter="events">Events</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="gallery-grid">
+        <!-- Item 1 -->
+        <div class="gallery-item reveal" data-category="crea" data-title="Students painting in Crea session">
+          <div class="gallery-placeholder"><span>🎨</span></div>
+          <div class="gallery-overlay">
+            <h4 style="color:white;font-size:1.1rem;">Creative Expression</h4>
+            <p style="color:rgba(255,255,255,0.8);font-size:14px;">Crea Program</p>
+          </div>
+        </div>
+        <!-- Item 2 -->
+        <div class="gallery-item reveal" data-category="hapi" data-title="Group mindfulness activity">
+          <div class="gallery-placeholder" style="background:rgba(255,107,157,0.1);color:var(--hapi-color);"><span>😊</span></div>
+          <div class="gallery-overlay">
+            <h4 style="color:white;font-size:1.1rem;">Mindfulness Session</h4>
+            <p style="color:rgba(255,255,255,0.8);font-size:14px;">Hapi Program</p>
+          </div>
+        </div>
+        <!-- Item 3 -->
+        <div class="gallery-item reveal" data-category="hcu" data-title="Working in the Pottery Lab">
+          <div class="gallery-placeholder" style="background:rgba(255,140,66,0.1);color:var(--orange);"><span>🏺</span></div>
+          <div class="gallery-overlay">
+            <h4 style="color:white;font-size:1.1rem;">Pottery Lab</h4>
+            <p style="color:rgba(255,255,255,0.8);font-size:14px;">HapiCrea Universe</p>
+          </div>
+        </div>
+        <!-- Item 4 -->
+        <div class="gallery-item reveal" data-category="events" data-title="School Annual Day Celebration">
+          <div class="gallery-placeholder" style="background:rgba(124,92,252,0.1);color:var(--wami-color);"><span>🎉</span></div>
+          <div class="gallery-overlay">
+            <h4 style="color:white;font-size:1.1rem;">Annual Celebration</h4>
+            <p style="color:rgba(255,255,255,0.8);font-size:14px;">Events</p>
+          </div>
+        </div>
+        <!-- Item 5 -->
+        <div class="gallery-item reveal" data-category="crea" data-title="Miniature making">
+          <div class="gallery-placeholder"><span>✂️</span></div>
+          <div class="gallery-overlay">
+            <h4 style="color:white;font-size:1.1rem;">Craft Workshop</h4>
+            <p style="color:rgba(255,255,255,0.8);font-size:14px;">Crea Program</p>
+          </div>
+        </div>
+        <!-- Item 6 -->
+        <div class="gallery-item reveal" data-category="hcu" data-title="Animation studio setup">
+          <div class="gallery-placeholder" style="background:rgba(78,205,196,0.1);color:var(--crea-color);"><span>💻</span></div>
+          <div class="gallery-overlay">
+            <h4 style="color:white;font-size:1.1rem;">Animation Zone</h4>
+            <p style="color:rgba(255,255,255,0.8);font-size:14px;">HapiCrea Universe</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox">
+    <button class="lightbox-close">✕</button>
+    <div class="lightbox-content"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><div class="logo-icon">HW</div><span>HapiWelkin</span></a>
+          <p>Empowering students through creative education, career guidance, and happiness development since 2014.</p>
+        </div>
+        <div><h4>Quick Links</h4><div class="footer-links"><a href="index.html">Home</a><a href="about.html">About Us</a><a href="for-schools.html">For Schools</a><a href="gallery.html">Gallery</a></div></div>
+        <div><h4>Programs</h4><div class="footer-links"><a href="school-programs.html#hapi">School Programs</a><a href="college-programs.html">College Programs</a></div></div>
+        <div><h4>Contact Us</h4>
+          <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:admin@hapiwelkin.com">admin@hapiwelkin.com</a></div>
+          <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><div><a href="tel:+919159666610">+91 91596 66610</a></div></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2025 HapiWelkin Creative Institute.</span></div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="enquiryModal">
+    <div class="modal">
+      <button class="modal-close">✕</button>
+      <form data-form="enquiry-modal">
+        <div class="form-content">
+          <h2>Enquire Now</h2>
+          <div class="form-group"><input type="text" name="name" required placeholder="Full Name"></div>
+          <div class="form-group"><input type="email" name="email" required placeholder="Email Address"></div>
+          <div class="form-group"><input type="tel" name="phone" required placeholder="Phone Number"></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Submit Enquiry</button>
+        </div>
+        <div class="form-success"><div class="success-icon">✓</div><h3>Thank You!</h3></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
