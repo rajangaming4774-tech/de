@@ -4,64 +4,75 @@
    ============================================================ */
 
 /* ---------- Google Fonts ---------- */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap');
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
-  /* Brand colors — near-black ink, vivid orange, warm yellow */
-  --ink: #16171C;
-  --ink-soft: #2A2C33;
-  --orange: #FF6B2C;
-  --orange-dark: #E85618;
+  /* Brand colors — Nexar palette: sky blue, grass green, warm amber, navy ink */
+  --ink: #15223B;
+  --ink-soft: #26374F;
+  --orange: #FF9F43;
+  --orange-dark: #F0871F;
   --yellow: #FFC93D;
 
-  /* Legacy aliases — old names point at the new palette
-     so every existing rule re-themes automatically.
-     --coral (accent) = orange; primary buttons are overridden to ink below. */
-  --teal: var(--orange);
-  --teal-dark: var(--orange-dark);
-  --teal-deep: var(--ink);
-  --teal-soft: var(--yellow);
-  --coral: var(--orange);
-  --coral-dark: var(--orange-dark);
-  --coral-gradient: linear-gradient(135deg, #FF6B2C, #FF8A3D);
-  --coral-gradient-hover: linear-gradient(135deg, #E85618, #FF6B2C);
-  --coral-glow: rgba(255, 107, 44, 0.30);
+  /* New Nexar accents */
+  --sky: #4A90E2;
+  --sky-dark: #3B7BD0;
+  --grass: #46C36A;
+  --grass-dark: #37A657;
+  --coral-accent: #FF6F61;
 
-  /* Backgrounds — crisp white + soft off-white */
-  --bg-cream: #FFFFFF;
-  --bg-white: #FFFFFF;
-  --bg-light: #F6F5F2;
-  --bg-glass: #FFFFFF;
-  --bg-glass-strong: #FFFFFF;
+  /* Card surfaces (decoupled from section backgrounds) */
+  --card-bg: rgba(255, 255, 255, 0.82);
+  --card-solid: #FFFFFF;
+
+  /* Legacy aliases — repointed so existing rules re-theme to Nexar.
+     Primary accent (coral/teal) is now sky blue. */
+  --teal: var(--sky);
+  --teal-dark: var(--sky-dark);
+  --teal-deep: var(--ink);
+  --teal-soft: var(--grass);
+  --coral: var(--sky);
+  --coral-dark: var(--sky-dark);
+  --coral-gradient: linear-gradient(135deg, #4A90E2, #46C36A);
+  --coral-gradient-hover: linear-gradient(135deg, #3B7BD0, #37A657);
+  --coral-glow: rgba(74, 144, 226, 0.30);
+
+  /* Backgrounds — sky tints (the true sky+hills lives on <body>).
+     Cards use --card-bg / --card-solid, so these can go sky-toned. */
+  --bg-cream: #E8F4FF;
+  --bg-white: #F5FAFF;
+  --bg-light: #E8F3FF;
+  --bg-glass: rgba(255, 255, 255, 0.72);
+  --bg-glass-strong: rgba(255, 255, 255, 0.86);
 
   /* Text */
-  --text-heading: #16171C;
-  --text-body: #55565C;
-  --text-muted: #8A8B90;
+  --text-heading: #14203A;
+  --text-body: #47546A;
+  --text-muted: #8893A6;
   --text-white: #FFFFFF;
 
-  /* Program accent colors — orange / yellow / ink family */
-  --hapi-color: #FF6B2C;
-  --crea-color: #FFC93D;
-  --wami-color: #16171C;
-  --deep-color: #FF8A3D;
-  --multimedia-color: #FF6B2C;
-  --job-color: #16171C;
+  /* Program accent colors — remixed across the Nexar palette */
+  --hapi-color: #FF9F43;
+  --crea-color: #46C36A;
+  --wami-color: #4A90E2;
+  --deep-color: #7C5CFF;
+  --multimedia-color: #FF6F61;
+  --job-color: #15223B;
 
-  /* Surfaces — solid cards with crisp, defined borders (professional) */
-  --glass-blur: 0px;
-  --glass-border: 1px solid rgba(22, 23, 28, 0.14);
-  --glass-shadow: 0 2px 10px rgba(22, 23, 28, 0.05);
-  --border-hairline: 1px solid rgba(22, 23, 28, 0.09);
+  /* Surfaces — frosted glass cards, soft blue shadow */
+  --glass-blur: 14px;
+  --glass-border: 1px solid rgba(255, 255, 255, 0.65);
+  --glass-shadow: 0 16px 40px rgba(40, 90, 160, 0.14);
+  --border-hairline: 1px solid rgba(40, 90, 160, 0.10);
 
-  /* Spacing — sharper, tighter radii */
+  /* Spacing — larger, softer radii (Nexar rounded cards) */
   --section-pad: 100px 0;
   --container-max: 1200px;
   --container-pad: 0 24px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 26px;
   --radius-pill: 50px;
 
   /* Typography */
@@ -90,7 +101,15 @@ body {
   font-size: 16px;
   line-height: 1.7;
   color: var(--text-body);
-  background-color: var(--bg-cream);
+  /* Nexar sky: blue gradient (fixed) with soft green rolling hills pinned to the viewport bottom */
+  background-color: #E8F4FF;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 240' preserveAspectRatio='none'%3E%3Cpath fill='%237FC768' d='M0,150 C240,70 480,70 720,120 C960,170 1200,175 1440,110 L1440,240 L0,240 Z'/%3E%3Cpath fill='%2361B24C' d='M0,188 C300,132 600,152 900,176 C1140,196 1320,182 1440,166 L1440,240 L0,240 Z'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #B9DCFF 0%, #D2EAFF 24%, #E6F3FF 50%, #F2F9FF 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center bottom, center top;
+  background-size: 100% 200px, 100% 100%;
+  background-attachment: fixed, fixed;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -201,15 +220,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-secondary {
-  background: var(--bg-white);
+  background: var(--card-solid);
   border: 2px solid rgba(22, 23, 28, 0.12);
   color: var(--ink);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 107, 44, 0.08);
-  border-color: var(--orange);
-  color: var(--orange);
+  background: rgba(74, 144, 226, 0.10);
+  border-color: var(--sky);
+  color: var(--sky-dark);
   transform: translateY(-2px);
 }
 
@@ -237,9 +256,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ---------- Glassmorphic Cards ---------- */
 .glass-card {
-  background: var(--bg-white);
+  background: var(--card-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
   border: var(--glass-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   box-shadow: var(--glass-shadow);
   transition: all 0.3s var(--ease-smooth);
 }
@@ -332,6 +353,25 @@ h1, h2, h3, h4, h5, h6 {
 
 .blob-pink {
   background: radial-gradient(circle, #FFC93D 0%, transparent 70%);
+}
+
+/* ============================================================
+   SCROLL PROGRESS BAR (Motion)
+   ============================================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--coral), var(--orange), #FFC93D);
+  z-index: 2000;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress { display: none; }
 }
 
 /* ============================================================
@@ -526,8 +566,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   padding: 140px 0 80px;
   overflow: hidden;
-  /* Soft shaded backdrop, deepening toward the portrait on the right */
-  background: radial-gradient(900px 700px at 72% 45%, #EBE9E4 0%, #F6F5F2 46%, #FFFFFF 80%);
+  background: transparent;
 }
 
 .hero .container {
@@ -557,7 +596,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   color: var(--coral);
   margin-bottom: 24px;
-  animation: float 3s ease-in-out infinite;
+  animation: heroReveal 0.7s ease-out both, float 3s ease-in-out infinite 0.8s;
 }
 
 .hero-badge svg {
@@ -574,10 +613,64 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
 }
 
+/* Kinetic headline: cycling word rotator inside the highlight slot.
+   Scoped to .hero h1 so other pages' .highlight spans are unaffected.
+   The masked inline-grid stacks every word in one cell (auto-sizes to the
+   widest word before JS runs); JS then pins width to the current word. */
 .hero h1 .highlight {
-  color: var(--orange);
-  -webkit-text-fill-color: var(--orange);
+  position: relative;
+  display: inline-grid;
+  vertical-align: bottom;
+  overflow: hidden;
+  height: 1.05em;
+  transition: width 0.55s cubic-bezier(0.65, 0, 0.15, 1);
+  will-change: width;
+  -webkit-text-fill-color: currentColor;
 }
+
+.hero h1 .hl-word {
+  grid-area: 1 / 1;
+  align-self: end;
+  justify-self: start;
+  white-space: nowrap;
+  background: linear-gradient(100deg, var(--coral) 0%, var(--orange) 46%, var(--coral) 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: hlShimmer 6s linear infinite;
+  transform: translateY(112%);
+  opacity: 0;
+  filter: blur(7px);
+  transition:
+    transform 0.62s cubic-bezier(0.19, 0.72, 0.23, 1),
+    opacity   0.5s  ease,
+    filter    0.55s ease;
+  will-change: transform, opacity, filter;
+}
+
+.hero h1 .hl-word.is-current { transform: translateY(0);     opacity: 1; filter: blur(0); }
+.hero h1 .hl-word.is-prev    { transform: translateY(-112%); opacity: 0; filter: blur(7px); }
+
+/* Highlighter underline — stretches with the box width as words change */
+.hero h1 .highlight::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.02em;
+  height: 0.1em;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--coral), var(--orange));
+  opacity: 0.9;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.15, 1);
+  will-change: transform;
+  pointer-events: none;
+}
+.hero h1 .highlight.is-swept::after { transform: scaleX(1); }
 
 .hero-text {
   font-size: 1.15rem;
@@ -620,15 +713,16 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
-/* Soft shaded backdrop behind the portrait — the portrait masks into this */
+/* Soft off-white circle behind the hero image */
 .hero-visual::before {
   content: '';
   position: absolute;
-  width: 480px;
-  height: 480px;
-  max-width: 96%;
+  width: 440px;
+  height: 440px;
+  max-width: 90%;
   aspect-ratio: 1;
-  background: radial-gradient(circle at 50% 44%, rgba(22, 23, 28, 0.20) 0%, rgba(22, 23, 28, 0.08) 46%, transparent 68%);
+  border-radius: 50%;
+  background: var(--bg-light);
   z-index: 0;
 }
 
@@ -653,11 +747,29 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 460px;
   z-index: 1;
   animation: floatSlow 6s ease-in-out infinite;
-  filter: drop-shadow(0 24px 44px rgba(22, 23, 28, 0.28));
-  /* Fade/mask the portrait's edges so it blends into the shaded backdrop */
-  -webkit-mask-image: linear-gradient(to bottom, #000 70%, rgba(0, 0, 0, 0) 99%);
-  mask-image: linear-gradient(to bottom, #000 70%, rgba(0, 0, 0, 0) 99%);
+  filter: drop-shadow(0 24px 44px rgba(22, 23, 28, 0.18));
 }
+
+/* Interactive 3D hero object (Three.js). Overlays the visual; the
+   illustration below reserves layout space and acts as the no-WebGL
+   fallback until JS confirms the 3D scene is live (.hero-visual.is-3d). */
+.hero-3d {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  cursor: grab;
+  touch-action: pan-y;            /* let vertical scroll through; use drag to spin */
+}
+.hero-3d:active { cursor: grabbing; }
+.hero-3d canvas { display: block; width: 100%; height: 100%; }
+
+.hero-visual.is-3d .hero-3d { opacity: 1; }
+.hero-visual.is-3d .hero-image { visibility: hidden; animation: none; }  /* keeps its box for layout */
 
 /* Floating decorative cards */
 .float-card {
@@ -695,7 +807,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .float-card-1 .float-card-icon {
-  background: rgba(255, 107, 44, 0.15);
+  background: rgba(74, 144, 226, 0.16);
 }
 
 .float-card-2 {
@@ -705,7 +817,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .float-card-2 .float-card-icon {
-  background: rgba(255, 107, 44, 0.15);
+  background: rgba(70, 195, 106, 0.16);
 }
 
 .float-card-3 {
@@ -715,7 +827,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .float-card-3 .float-card-icon {
-  background: rgba(255, 107, 44, 0.15);
+  background: rgba(255, 159, 67, 0.18);
 }
 
 /* Hero background blobs */
@@ -738,6 +850,108 @@ h1, h2, h3, h4, h5, h6 {
   height: 200px;
   top: 40%;
   left: 40%;
+}
+
+/* ---------- Hero entrance + ambient animation ---------- */
+/* Staggered load-in for the text column */
+.hero h1     { animation: heroReveal 0.7s ease-out 0.12s both; }
+.hero-text   { animation: heroReveal 0.7s ease-out 0.24s both; }
+.hero-ctas   { animation: heroReveal 0.7s ease-out 0.36s both; }
+.hero-stats  { animation: heroReveal 0.7s ease-out 0.48s both; }
+/* Visual column scales in, then the image keeps its slow float */
+.hero-visual { animation: heroRevealVisual 1s ease-out 0.3s both; }
+
+/* Continuous ambient drift on the background blobs.
+   Uses the standalone `translate` property so it composes with the
+   scroll-parallax `transform` set by script.js (no conflict). */
+.hero .blob-1 { animation: blobDrift1 16s ease-in-out infinite; }
+.hero .blob-2 { animation: blobDrift2 20s ease-in-out infinite; }
+.hero .blob-3 { animation: blobDrift3 13s ease-in-out infinite; }
+
+/* Gentle breathing backdrop circle behind the illustration */
+.hero-visual::before { animation: breathe 7s ease-in-out infinite; }
+
+/* ---------- Hero atmospheric background: "Warm Aurora" ---------- */
+/* Sits at z-index:0 behind blobs + content. Compose-safe: inner layers
+   animate `transform`; the wrapper is offset via `translate` (pointer
+   parallax, JS) — the same split the blobs use, and it never touches
+   .blob, so it can't collide with the blob scroll parallax. */
+.hero-aurora {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout paint;
+  will-change: translate;
+  translate: var(--aurora-x, 0px) var(--aurora-y, 0px);
+  background:
+    radial-gradient(60% 55% at 22% 30%, rgba(120, 182, 255, 0.22), transparent 70%),
+    radial-gradient(55% 60% at 82% 68%, rgba(110, 220, 170, 0.16), transparent 72%);
+}
+
+.hero-aurora-mesh {
+  position: absolute;
+  inset: -20%;
+  filter: blur(60px) saturate(115%);
+  will-change: transform, opacity;
+  background:
+    radial-gradient(38% 42% at 28% 32%, rgba(74, 144, 226, 0.40), transparent 70%),
+    radial-gradient(34% 38% at 72% 40%, rgba(90, 200, 255, 0.30), transparent 72%),
+    radial-gradient(40% 40% at 58% 78%, rgba(70, 195, 106, 0.28), transparent 74%);
+  animation: auroraDrift1 26s ease-in-out infinite alternate;
+}
+.hero-aurora-mesh::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  will-change: transform, opacity;
+  background:
+    radial-gradient(36% 40% at 68% 26%, rgba(130, 210, 255, 0.30), transparent 70%),
+    radial-gradient(42% 44% at 24% 72%, rgba(70, 195, 106, 0.26), transparent 72%),
+    radial-gradient(30% 34% at 50% 50%, rgba(150, 180, 255, 0.22), transparent 76%);
+  animation: auroraDrift2 34s ease-in-out infinite alternate;
+}
+
+.hero-aurora-sweep {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 170%;
+  height: 170%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  transform-origin: center;
+  filter: blur(50px);
+  opacity: 0.55;
+  mix-blend-mode: soft-light;
+  will-change: transform;
+  background: conic-gradient(from 0deg at 50% 50%,
+      rgba(74, 144, 226, 0.00)   0deg,
+      rgba(120, 200, 255, 0.32)  60deg,
+      rgba(74, 144, 226, 0.00) 130deg,
+      rgba(90, 210, 140, 0.28) 230deg,
+      rgba(74, 144, 226, 0.00) 320deg,
+      rgba(74, 144, 226, 0.00) 360deg);
+  -webkit-mask-image: radial-gradient(circle at center, #000 30%, transparent 68%);
+          mask-image: radial-gradient(circle at center, #000 30%, transparent 68%);
+  animation: auroraSweep 55s linear infinite;
+}
+
+.hero-aurora-grain {
+  position: absolute;
+  inset: -6%;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+  animation: auroraGrain 1.1s steps(6) infinite;
+}
+
+@media (max-width: 768px) {
+  .hero-aurora-sweep { animation: none; opacity: 0.40; }
+  .hero-aurora-grain { animation: none; }
+  .hero-aurora-mesh  { filter: blur(48px); animation-duration: 40s; }
+  .hero-aurora-mesh::before { animation-duration: 48s; }
 }
 
 /* ============================================================
@@ -2617,6 +2831,115 @@ h1, h2, h3, h4, h5, h6 {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ---------- Hero animation keyframes ---------- */
+@keyframes heroReveal {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroRevealVisual {
+  from { opacity: 0; transform: translateY(30px) scale(0.94); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Shimmering gradient sweep for the highlighted headline word */
+@keyframes hueShift {
+  to { background-position: 300% 0; }
+}
+
+/* Breathing scale/opacity for the backdrop circle */
+@keyframes breathe {
+  0%, 100% { transform: scale(1);    opacity: 1; }
+  50%      { transform: scale(1.06); opacity: 0.82; }
+}
+
+/* Ambient blob drift (standalone `translate` property) */
+@keyframes blobDrift1 {
+  0%, 100% { translate: 0 0;        scale: 1; }
+  50%      { translate: 26px 34px;  scale: 1.12; }
+}
+
+@keyframes blobDrift2 {
+  0%, 100% { translate: 0 0;        scale: 1; }
+  50%      { translate: -30px 20px; scale: 1.1; }
+}
+
+@keyframes blobDrift3 {
+  0%, 100% { translate: 0 0;        scale: 1; }
+  33%      { translate: 22px -18px; scale: 1.08; }
+  66%      { translate: -16px 14px; scale: 0.96; }
+}
+
+/* Kinetic headline word shimmer */
+@keyframes hlShimmer {
+  to { background-position: 220% center; }
+}
+
+/* Atmospheric aurora background */
+@keyframes auroraDrift1 {
+  0%   { transform: translate3d(-3%, -2%, 0) scale(1.05) rotate(0deg);  opacity: 0.90; }
+  50%  { transform: translate3d( 4%,  3%, 0) scale(1.14) rotate(4deg);  opacity: 1.00; }
+  100% { transform: translate3d( 2%, -4%, 0) scale(1.08) rotate(-3deg); opacity: 0.92; }
+}
+@keyframes auroraDrift2 {
+  0%   { transform: translate3d( 3%,  2%, 0) scale(1.10) rotate(0deg);  opacity: 0.85; }
+  50%  { transform: translate3d(-4%, -3%, 0) scale(1.00) rotate(-5deg); opacity: 1.00; }
+  100% { transform: translate3d(-2%,  4%, 0) scale(1.12) rotate(4deg);  opacity: 0.90; }
+}
+@keyframes auroraSweep {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes auroraGrain {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-6px, 4px, 0); }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-badge,
+  .hero h1,
+  .hero h1 .highlight,
+  .hero-text,
+  .hero-ctas,
+  .hero-stats,
+  .hero-visual,
+  .hero-image,
+  .hero .blob-1,
+  .hero .blob-2,
+  .hero .blob-3,
+  .hero-visual::before,
+  .float-card-1,
+  .float-card-2,
+  .float-card-3 {
+    animation: none !important;
+  }
+  .hero h1 .highlight {
+    -webkit-text-fill-color: var(--orange);
+    color: var(--orange);
+  }
+}
+
+/* Reduced motion: freeze the aurora + kinetic headline to static states */
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora { translate: none; }
+  .hero-aurora-mesh,
+  .hero-aurora-mesh::before,
+  .hero-aurora-sweep,
+  .hero-aurora-grain { animation: none; }
+  .hero-aurora-grain { opacity: 0.04; }
+  .hero-aurora-sweep { opacity: 0.40; }
+
+  /* Headline collapses to a single static solid-orange word + drawn underline */
+  .hero h1 .highlight { overflow: visible; height: auto; width: auto !important; transition: none; }
+  .hero h1 .hl-word {
+    animation: none; transition: none; transform: none; filter: none;
+    background: none; -webkit-text-fill-color: var(--orange); color: var(--orange); opacity: 0;
+  }
+  .hero h1 .hl-word.is-current { opacity: 1; }
+  .hero h1 .hl-word:not(.is-current) { display: none; }
+  .hero h1 .highlight::after { transition: none; transform: scaleX(1); }
+}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -2730,4 +3053,174 @@ h1, h2, h3, h4, h5, h6 {
   .gallery-grid { grid-template-columns: 1fr; }
   .why-choose-grid { grid-template-columns: 1fr; }
   .zones-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   BOLD UI REDESIGN LAYER  (site-wide, cascades over the base)
+   Adapts the reference's bold/editorial energy to HapiWelkin's
+   existing palette (navy ink · amber · sky · grass):
+   condensed display type, huge uppercase headlines, tighter
+   tracking, stronger contrast, chunkier CTAs. No palette change.
+   ============================================================ */
+:root {
+  --font-display: 'Oswald', 'Outfit', sans-serif;
+}
+
+/* ---- Big, condensed, uppercase display headings ---- */
+.hero h1,
+.page-hero h1,
+.for-schools-hero h1,
+.section-title,
+.cta-content h2,
+.cta-inner h2 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  line-height: 0.96;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 8vw, 6.2rem) !important;
+  letter-spacing: -0.015em;
+}
+/* keep the kinetic word-rotator slot from clipping tall condensed caps */
+.hero h1 .highlight { height: 1.16em; }
+
+.page-hero h1,
+.for-schools-hero h1 {
+  font-size: clamp(2.6rem, 6.5vw, 5rem);
+  line-height: 0.95;
+}
+
+.section-title {
+  font-size: clamp(2.1rem, 4.6vw, 3.7rem);
+}
+
+/* Accent word inside interior headings pops in the brand amber
+   (the homepage hero keeps its animated gradient highlight). */
+.page-hero h1 .highlight,
+.for-schools-hero h1 .highlight,
+.section-title .highlight {
+  color: var(--orange);
+  -webkit-text-fill-color: var(--orange);
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+}
+
+/* ---- Eyebrow labels: tighter, bolder, more editorial ---- */
+.section-label {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* ---- Chunkier, bolder CTAs ---- */
+.btn {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 16px 34px;
+}
+.btn-primary {
+  background: var(--ink);
+  color: var(--text-white);
+  box-shadow: 0 8px 24px rgba(21, 34, 59, 0.28);
+}
+.btn-primary:hover {
+  background: var(--orange);
+  color: var(--ink);
+  box-shadow: 0 12px 30px rgba(255, 159, 67, 0.4);
+}
+
+/* ---- Page-hero bands: more presence, bold statement ---- */
+.page-hero,
+.for-schools-hero {
+  padding-top: clamp(140px, 18vh, 220px);
+  padding-bottom: clamp(56px, 8vh, 96px);
+}
+
+/* On big display headings, drop the old drop-cap sizing helpers cleanly */
+.hero h1 .hl-word { letter-spacing: -0.01em; }
+
+/* ============================================================
+   LUXURY HERO ACCENTS  ("Boutique Vitrine")
+   Warms the 3D object's surround from blue/green to
+   champagne + brass to frame the marble/brass HW blocks like
+   a jewellery vitrine. Navy stays on the headline (navy +
+   champagne + cream). Float cards keep their glass — warm trim only.
+   ============================================================ */
+:root {
+  --champagne: #F3E4C4;
+  --brass: #C79A45;
+  --brass-deep: #9A7628;
+}
+
+/* Backdrop disc: cream -> champagne with a hairline brass ring + soft glow */
+.hero-visual::before {
+  width: 470px;
+  height: 470px;
+  background: radial-gradient(circle at 50% 42%, #FFFDF7 0%, var(--champagne) 55%, rgba(243, 228, 196, 0) 74%);
+  box-shadow:
+    inset 0 0 0 1px rgba(199, 154, 69, 0.28),
+    0 40px 90px -40px rgba(120, 90, 30, 0.30),
+    0 0 110px rgba(231, 200, 122, 0.10);
+}
+
+/* Decorative accent square: muted brass */
+.hero-visual::after {
+  background: linear-gradient(145deg, #E7C87A, var(--brass));
+  box-shadow: 0 14px 30px rgba(120, 90, 30, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  opacity: 0.9;
+}
+
+/* Ambient aurora: recolour cool -> warm champagne/brass, calmer saturation */
+.hero-aurora {
+  background:
+    radial-gradient(60% 55% at 24% 30%, rgba(243, 216, 160, 0.22), transparent 70%),
+    radial-gradient(55% 60% at 80% 70%, rgba(214, 178, 120, 0.14), transparent 72%);
+}
+.hero-aurora-mesh {
+  filter: blur(60px) saturate(106%);
+  background:
+    radial-gradient(38% 42% at 28% 32%, rgba(231, 200, 122, 0.34), transparent 70%),
+    radial-gradient(34% 38% at 72% 40%, rgba(255, 246, 226, 0.30), transparent 72%),
+    radial-gradient(40% 40% at 58% 78%, rgba(199, 154, 69, 0.20), transparent 74%);
+}
+.hero-aurora-mesh::before {
+  background:
+    radial-gradient(36% 40% at 68% 26%, rgba(255, 244, 214, 0.30), transparent 70%),
+    radial-gradient(42% 44% at 24% 72%, rgba(214, 178, 120, 0.20), transparent 72%),
+    radial-gradient(30% 34% at 50% 50%, rgba(243, 228, 196, 0.22), transparent 76%);
+}
+.hero-aurora-sweep {
+  opacity: 0.42;
+  background: conic-gradient(from 0deg at 50% 50%,
+    rgba(199, 154, 69, 0) 0deg,
+    rgba(231, 200, 122, 0.30) 60deg,
+    rgba(199, 154, 69, 0) 130deg,
+    rgba(255, 246, 226, 0.26) 230deg,
+    rgba(199, 154, 69, 0) 320deg,
+    rgba(199, 154, 69, 0) 360deg);
+}
+.hero-aurora-grain { opacity: 0.04; }
+
+/* Float cards: keep the glass, warm the trim + icon chips */
+.float-card { border-color: rgba(199, 154, 69, 0.22); box-shadow: 0 10px 34px rgba(120, 90, 30, 0.10); }
+.float-card-1 .float-card-icon { background: rgba(199, 154, 69, 0.16); }
+.float-card-2 .float-card-icon { background: rgba(243, 228, 196, 0.55); }
+.float-card-3 .float-card-icon { background: rgba(231, 200, 122, 0.22); }
+
+/* ============================================================
+   TEXT-FOCUSED HERO  (hero visual removed)
+   Single column on desktop so the content isn't stranded in
+   the left half; roomier max-width for the big bold headline.
+   ============================================================ */
+@media (min-width: 1025px) {
+  .hero .container { grid-template-columns: 1fr; }
+  .hero-content { max-width: 900px; }
 }

@@ -373,3 +373,149 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+/* ============================================================
+   HERO MOVING ANIMATIONS (appended)
+   1) Warm Aurora — desktop pointer parallax on the background field
+   2) Kinetic headline — cycling word rotator + highlighter underline
+   Both are self-contained, guarded for reduced-motion / touch, and never
+   touch .blob transforms, so they compose with the existing hero motion.
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* ---------- 1) Aurora background pointer parallax (desktop only) ---------- */
+  (function () {
+    var hero = document.getElementById('hero');
+    if (!hero) return;
+    var aurora = hero.querySelector('.hero-aurora');
+    if (!aurora) return;
+
+    var reduceMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var fineMQ   = window.matchMedia('(pointer: fine)');
+    if (reduceMQ.matches || !fineMQ.matches) return;
+
+    var RANGE = 32, EASE = 0.08;
+    var tx = 0, ty = 0, cx = 0, cy = 0;
+    var rafId = null, running = false, active = false;
+
+    function onMove(e) {
+      var r = hero.getBoundingClientRect();
+      var nx = (e.clientX - r.left) / r.width  - 0.5;
+      var ny = (e.clientY - r.top)  / r.height - 0.5;
+      tx = -nx * RANGE;
+      ty = -ny * RANGE;
+      active = true;
+      start();
+    }
+    function onLeave() { tx = 0; ty = 0; active = false; start(); }
+
+    function tick() {
+      cx += (tx - cx) * EASE;
+      cy += (ty - cy) * EASE;
+      aurora.style.setProperty('--aurora-x', cx.toFixed(2) + 'px');
+      aurora.style.setProperty('--aurora-y', cy.toFixed(2) + 'px');
+      if (active || Math.abs(tx - cx) > 0.1 || Math.abs(ty - cy) > 0.1) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        running = false;
+      }
+    }
+    function start() { if (!running) { running = true; rafId = requestAnimationFrame(tick); } }
+
+    hero.addEventListener('pointermove', onMove, { passive: true });
+    hero.addEventListener('pointerleave', onLeave, { passive: true });
+
+    var onPref = function (ev) {
+      if (!ev.matches) return;
+      hero.removeEventListener('pointermove', onMove);
+      hero.removeEventListener('pointerleave', onLeave);
+      if (rafId) cancelAnimationFrame(rafId);
+      aurora.style.removeProperty('--aurora-x');
+      aurora.style.removeProperty('--aurora-y');
+    };
+    if (reduceMQ.addEventListener) reduceMQ.addEventListener('change', onPref);
+    else if (reduceMQ.addListener) reduceMQ.addListener(onPref);
+  })();
+
+  /* ---------- 2) Kinetic headline word rotator ---------- */
+  (function () {
+    var hero = document.getElementById('hero');
+    if (!hero) return;
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduce.matches) return;
+
+    var rotator = hero.querySelector('.highlight');
+    if (!rotator) return;
+    var words = Array.prototype.slice.call(rotator.querySelectorAll('.hl-word'));
+    if (words.length < 2) return;
+
+    var index = 0, widths = [], timer = null, armed = false;
+
+    function measure() {
+      widths = words.map(function (w) { return Math.ceil(w.getBoundingClientRect().width); });
+      rotator.style.width = widths[index] + 'px';
+    }
+    function heroVisible() {
+      var r = hero.getBoundingClientRect();
+      return r.bottom > 0 && r.top < (window.innerHeight || 0);
+    }
+    function tick() {
+      var prev = words[index];
+      index = (index + 1) % words.length;
+      var next = words[index];
+
+      prev.classList.remove('is-current');
+      prev.classList.add('is-prev');
+
+      next.classList.remove('is-prev', 'is-current');
+      next.style.transition = 'none';
+      void next.offsetWidth;
+      next.style.transition = '';
+      next.classList.add('is-current');
+
+      rotator.style.width = widths[index] + 'px';
+    }
+    function start() {
+      if (!armed || timer || !heroVisible()) return;
+      timer = setInterval(tick, 2900);
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+    function boot() {
+      measure();
+      setTimeout(function () { rotator.classList.add('is-swept'); }, 1500);
+      setTimeout(function () { armed = true; start(); }, 2900);
+    }
+
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(boot);
+    else boot();
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { e.isIntersecting ? start() : stop(); });
+      }, { threshold: 0.15 }).observe(hero);
+    }
+    document.addEventListener('visibilitychange', function () {
+      document.hidden ? stop() : start();
+    });
+    var raf = null;
+    window.addEventListener('resize', function () {
+      if (raf) return;
+      raf = requestAnimationFrame(function () { raf = null; measure(); });
+    });
+    var onReduce = function (e) {
+      if (!e.matches) return;
+      stop();
+      words.forEach(function (w, i) {
+        w.classList.remove('is-prev');
+        w.classList.toggle('is-current', i === 0);
+      });
+      index = 0;
+      rotator.style.width = '';
+    };
+    if (reduce.addEventListener) reduce.addEventListener('change', onReduce);
+    else if (reduce.addListener) reduce.addListener(onReduce);
+  })();
+
+});
