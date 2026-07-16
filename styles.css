@@ -3064,6 +3064,10 @@ h1, h2, h3, h4, h5, h6 {
    ============================================================ */
 :root {
   --font-display: 'Oswald', 'Outfit', sans-serif;
+  /* Squared-off design language: every pill-shaped chip (nav links incl. the
+     active item, badges, buttons, tags) becomes a rectangle, site-wide.
+     True circles (avatars, dots, the WhatsApp FAB) use 50% and are untouched. */
+  --radius-pill: 0px;
 }
 
 /* ---- Big, condensed, uppercase display headings ---- */
@@ -3117,7 +3121,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
 }
 
-/* ---- Chunkier, bolder CTAs ---- */
+/* ---- Chunkier, bolder CTAs — squared off (rectangular, not pill) ---- */
 .btn {
   font-family: var(--font-display);
   text-transform: uppercase;
@@ -3125,6 +3129,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   font-size: 15px;
   padding: 16px 34px;
+  border-radius: 0;
 }
 .btn-primary {
   background: var(--ink);
