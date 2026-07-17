@@ -398,6 +398,10 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* Full-bleed header: the logo sits flush to the far left (and the CTA to
+     the far right) instead of being inset by the 1200px centered container. */
+  max-width: 100%;
+  padding: 0 clamp(16px, 3vw, 40px);
 }
 
 .logo {
